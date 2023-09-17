@@ -42,7 +42,7 @@ module.exports.Login = async (req, res, next) => {
       }
        const token = createSecretToken(user._id);
        res.cookie("token", token, {
-          domain: "https://postsmile.vercel.app",
+          domain: "https://postnsmile.onrender.com",
           path: "/",
           withCredentials: true,
           httpOnly: false,

@@ -26,7 +26,7 @@ app.listen(PORT, () => {
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://postsmile.vercel.app"],
+    origin: ["http://localhost:5173", "https://postsmile.vercel.app", "https://postnsmile.onrender.com"],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
