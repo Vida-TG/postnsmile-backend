@@ -44,6 +44,7 @@ module.exports.Login = async (req, res, next) => {
        res.cookie("token", token, {
           domain: "onrender.com",
           path: "/",
+          maxAge: 3600 * 1000,
           withCredentials: true,
           httpOnly: false,
           secure: true,
