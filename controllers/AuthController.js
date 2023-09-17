@@ -42,7 +42,7 @@ module.exports.Login = async (req, res, next) => {
       }
        const token = createSecretToken(user._id);
        res.cookie("token", token, {
-          domain: "https://postnsmile.onrender.com",
+          domain: "onrender.com",
           path: "/",
           withCredentials: true,
           httpOnly: false,
