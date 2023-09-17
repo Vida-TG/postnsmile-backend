@@ -3,8 +3,7 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
 module.exports.userVerification = (req, res) => {
-  const authHeader = req.headers['Authorization'];
-  
+  const authHeader = req.headers['authorization'];
   if (!authHeader) {
     return res.json({ status: false });
   }
@@ -27,7 +26,7 @@ module.exports.userVerification = (req, res) => {
 }
 
 module.exports.auth = (req, res, next) => {
-  const authHeader = req.headers['Authorization'];
+  const authHeader = req.headers['authorization'];
   
   if (!authHeader) {
     return res.json({ status: false });
