@@ -3,10 +3,18 @@ require("dotenv").config();
 const jwt = require("jsonwebtoken");
 
 module.exports.userVerification = (req, res) => {
-  const token = req.cookies.token
-  if (!token) {
-    return res.json({ status: false })
+  const authHeader = req.headers['Authorization'];
+  
+  if (!authHeader) {
+    return res.json({ status: false });
   }
+
+  const token = authHeader.split(' ')[1];
+
+  if (!token) {
+    return res.json({ status: false });
+  }
+
   jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
     if (err) {
      return res.json({ status: false })
@@ -19,9 +27,16 @@ module.exports.userVerification = (req, res) => {
 }
 
 module.exports.auth = (req, res, next) => {
-  const token = req.cookies.token
+  const authHeader = req.headers['Authorization'];
+  
+  if (!authHeader) {
+    return res.json({ status: false });
+  }
+
+  const token = authHeader.split(' ')[1];
+
   if (!token) {
-    return res.json({ status: false })
+    return res.json({ status: false });
   }
   jwt.verify(token, process.env.TOKEN_KEY, async (err, data) => {
     if (err) {
