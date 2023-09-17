@@ -41,16 +41,7 @@ module.exports.Login = async (req, res, next) => {
         return res.json({message:'Incorrect password or email' }) 
       }
        const token = createSecretToken(user._id);
-       res.cookie("token", token, {
-          domain: "onrender.com",
-          path: "/",
-          maxAge: 3600 * 1000,
-          withCredentials: true,
-          httpOnly: false,
-          secure: true,
-          sameSite: "none",
-       });
-       res.status(201).json({ message: "User logged in successfully", success: true });
+       res.status(201).json({ token, message: "User logged in successfully", success: true });
        next()
     } catch (error) {
       console.error(error);
